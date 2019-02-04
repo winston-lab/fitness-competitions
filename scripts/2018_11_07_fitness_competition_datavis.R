@@ -44,8 +44,8 @@ main = function(data_path,
                 proportion_lineplot_merged_out = "proportion_lineplot_merged.png"){
     df_full = read_tsv(data_path) %>%
         select(treatment_time, diamide, condition, control, condition_fluor, control_fluor,
-               replicate, fsc_a=`FSC-A`, fsc_h=`FSC-H`, ssc_a=`SSC-A`, ssc_h=`SSC-H`,
-               yfp=`YFP-A`, mcherry=`mCherry-A`, width) %>%
+               replicate, fsc_a=FSC_A, fsc_h=FSC_H, ssc_a=SSC_A, ssc_h=SSC_H,
+               yfp=YFP_A, mcherry=mCherry_A, width) %>%
         unite(condition_label, condition, condition_fluor, remove=FALSE) %>%
         unite(control_label, control, control_fluor, remove=FALSE) %>%
         dplyr::filter(fsc_a < max(fsc_a))
@@ -410,9 +410,9 @@ main(data_path=snakemake@input[["data_path"]],
      yfp_distributions_out=snakemake@output[["yfp_distributions_out"]],
      mcherry_distributions_out=snakemake@output[["mcherry_distributions_out"]] ,
      ratio_lineplot_separate_out=snakemake@output[["ratio_lineplot_separate_out"]],
-     proportion_lineplot_separate_out=snakemake@output[["proportion_lineplot_separate_out"]] ,
+     proportion_lineplot_separate_out=snakemake@output[["proportion_lineplot_separate_out"]],
      ratio_heatmap_out=snakemake@output[["ratio_heatmap_out"]],
-     proportion_heatmap_out=[["proportion_heatmap_out"]],
+     proportion_heatmap_out=snakemake@output[["proportion_heatmap_out"]],
      ratio_lineplot_merged_out=snakemake@output[["ratio_lineplot_merged_out"]],
      proportion_lineplot_merged_out=snakemake@output[["proportion_lineplot_merged_out"]])
 

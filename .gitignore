@@ -7,6 +7,9 @@ parsed_data/
 samplesheets/*
 logs/*
 logs/cluster/*
+mogrify.log
+snakemake.err
+snakemake.log
 
 !raw_data/.gitkeep
 !samplesheets/.gitkeep
