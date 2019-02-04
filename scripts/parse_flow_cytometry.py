@@ -6,6 +6,7 @@ import pandas as pd
 import warnings
 import itertools
 import string
+from math import nan
 
 def main(samplesheet_path: str,
          output_path: str):
@@ -13,6 +14,7 @@ def main(samplesheet_path: str,
 
     seen_wells = set()
     for index, well in samplesheet.iterrows():
+        print(well["filepath"])
         metadata, data = fcsparser.parse(well.filepath, meta_data_only=False, reformat_meta=True)
         intended_well = well.row + str(well.column).zfill(2)
         if intended_well != metadata["WELL_ID"]:
@@ -41,17 +43,17 @@ def main(samplesheet_path: str,
                            "control_fluor": well["control_fluor"],
                            "replicate": well["replicate"],
                            "filepath": well["filepath"],
-                           "FSC_H": data["FSC LinH"],
-                           "FSC_A": data["FSC LinA"],
-                           "SSC_H": data["SSC LinH"],
-                           "SSC_A": data["SSC LinA"],
-                           "YFP_H": data["FITC(530/30) LinH"],
-                           "YFP_A": data["FITC(530/30) LinA"],
-                           "mCherry_H": data["MCherry(615/30) LinH"],
-                           "mCherry_A": data["MCherry(615/30) LinA"],
+                           "FSC_H": (data["FSC LinH"] if "FSC LinH" in data.columns else nan),
+                           "FSC_A": (data["FSC LinA"] if "FSC LinA" in data.columns else nan),
+                           "SSC_H": (data["SSC LinH"] if "SSC LinH" in data.columns else nan),
+                           "SSC_A": (data["SSC LinA"] if "SSC LinA" in data.columns else nan),
+                           "YFP_H": (data["FITC(530/30) LinH"] if "FITC(530/30) LinH" in data.columns else nan),
+                           "YFP_A": (data["FITC(530/30) LinA"] if "FITC(530/30) LinA" in data.columns else nan),
+                           "mCherry_H": (data["MCherry(615/30) LinH"] if "MCherry(615/30) LinH" in data.columns else nan),
+                           "mCherry_A": (data["MCherry(615/30) LinA"] if "MCherry(615/30) LinA" in data.columns else nan),
                            "width": data["Width"],
                            "cytometer_time": data["Time"]})
-        df.to_csv(output_path, sep="\t", index=False, mode="w" if index==0 else "a", header=True if index==0 else False)
+        df.to_csv(output_path, sep="\t", index=False, mode="w" if index==0 else "a", header=True if index==0 else False, na_rep="NA")
 
     expected_wells = set(itertools.product([0,1,2], [1], string.ascii_uppercase[:8], range(1, 13))).union( \
             set(itertools.product([0,1,2], [2], string.ascii_uppercase[:4], range(1, 13))))

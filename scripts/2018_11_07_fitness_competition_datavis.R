@@ -158,7 +158,7 @@ main = function(data_path,
         geom_vline(xintercept = yfp_cutoff) +
         scale_x_flowJo_fasinh(expand=c(0,0),
                               name="YFP area",
-                              limits=c(NA, quantile(df_sample[["yfp"]], 0.999))) +
+                              limits=c(NA, quantile(df_sample[["yfp"]], 0.999, na.rm=TRUE))) +
         scale_y_continuous(expand=c(0, 0.03),
                            name="days in diamide") +
         facet_grid(control_label + condition_label ~ diamide,
@@ -182,7 +182,7 @@ main = function(data_path,
         geom_vline(xintercept = mcherry_cutoff) +
         scale_x_flowJo_fasinh(expand=c(0,0),
                               name="mCherry area",
-                              limits=c(NA, quantile(df_sample[["mcherry"]], 0.999))) +
+                              limits=c(NA, quantile(df_sample[["mcherry"]], 0.999, na.rm=TRUE))) +
         scale_y_continuous(expand=c(0, 0.03),
                            name="days in diamide") +
         facet_grid(control_label + condition_label ~ diamide,

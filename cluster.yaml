@@ -9,11 +9,11 @@ __default__:
 
 parse_flow_cytometry_data:
     n: 4
-    time: 10
-    mem: 2G
+    time: 30
+    mem: 200M
 
 fitness_competition_datavis:
-    n:1
-    time: 10
-    mem: 6G
+    n: 1
+    time: 30
+    mem: 20G
 
