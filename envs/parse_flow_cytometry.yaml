@@ -1,0 +1,8 @@
+name: parse_flow_cytometry
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - fcsparser=0.2.0=pyh24bf2e0_0
+    - pandas=0.24.0=py37hf484d3e_0
+    - pigz=2.4=h84994c4_0

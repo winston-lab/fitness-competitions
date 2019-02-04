@@ -1,0 +1,16 @@
+
+config.yaml
+.snakemake/
+raw_data/*
+datavis/
+parsed_data/
+samplesheets/*
+logs/*
+logs/cluster/*
+
+!raw_data/.gitkeep
+!samplesheets/.gitkeep
+!logs/.gitkeep
+!logs/cluster/.gitkeep
+
+.*.swp
