@@ -2,7 +2,7 @@
 
 #SBATCH -p priority
 #SBATCH -t 2:00:00
-#SBATCH --mem-per-cpu=1G
+#SBATCH --mem-per-cpu=2G
 #SBATCH -c 1
 #SBATCH -e snakemake.err
 #SBATCH -o snakemake.log

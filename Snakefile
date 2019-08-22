@@ -44,7 +44,8 @@ rule fitness_competition_datavis:
         ratio_heatmap_out = "datavis/{experiment}/{experiment}_ratio_heatmap.svg",
         proportion_heatmap_out = "datavis/{experiment}/{experiment}_proportion_heatmap.svg",
         ratio_lineplot_merged_out = "datavis/{experiment}/{experiment}_ratio_lineplot_merged.svg",
-        proportion_lineplot_merged_out = "datavis/{experiment}/{experiment}_proportion_lineplot_merged.svg"
+        proportion_lineplot_merged_out = "datavis/{experiment}/{experiment}_proportion_lineplot_merged.svg",
+        df_summary_out = "datavis/{experiment}/{experiment}_cell_counts.tsv",
     params:
         sampling_fraction = lambda wc: EXPERIMENTS[wc.experiment]["sampling_fraction"],
         yfp_cutoff = lambda wc: EXPERIMENTS[wc.experiment]["yfp_cutoff"],
@@ -52,5 +53,5 @@ rule fitness_competition_datavis:
     conda:
         "envs/fitness_competition_datavis.yaml"
     script:
-        "scripts/2018_11_07_fitness_competition_datavis.R"
+        "scripts/fitness_competition_datavis.R"
 

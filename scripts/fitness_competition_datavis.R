@@ -41,8 +41,10 @@ main = function(data_path,
                 ratio_heatmap_out = "ratio_heatmap.png",
                 proportion_heatmap_out = "proportion_heatmap.png",
                 ratio_lineplot_merged_out = "ratio_lineplot_merged.png",
-                proportion_lineplot_merged_out = "proportion_lineplot_merged.png"){
-    df_full = read_tsv(data_path) %>%
+                proportion_lineplot_merged_out = "proportion_lineplot_merged.png",
+                df_summary_out = "df_summary.tsv"){
+    df_full = read_tsv(data_path,
+                       col_types="iiicdccccicdddddddddd") %>%
         select(treatment_time, diamide, condition, control, condition_fluor, control_fluor,
                replicate, fsc_a=FSC_A, fsc_h=FSC_H, ssc_a=SSC_A, ssc_h=SSC_H,
                yfp=YFP_A, mcherry=mCherry_A, width) %>%
@@ -219,7 +221,9 @@ main = function(data_path,
                                   yfp/(mcherry+yfp)),
                experiment_type=if_else(condition==control,
                                        "self vs. self",
-                                       "mutant vs. WT"))
+                                       "mutant vs. WT")) %>%
+        write_tsv(df_summary_out)
+
 
     ratio_heatmap = ggplot(data=df_summary) +
         geom_raster(aes(x=replicate, y=treatment_time, fill=ratio)) +
@@ -414,5 +418,6 @@ main(data_path=snakemake@input[["data_path"]],
      ratio_heatmap_out=snakemake@output[["ratio_heatmap_out"]],
      proportion_heatmap_out=snakemake@output[["proportion_heatmap_out"]],
      ratio_lineplot_merged_out=snakemake@output[["ratio_lineplot_merged_out"]],
-     proportion_lineplot_merged_out=snakemake@output[["proportion_lineplot_merged_out"]])
+     proportion_lineplot_merged_out=snakemake@output[["proportion_lineplot_merged_out"]],
+     df_summary_out=snakemake@output[["df_summary_out"]])
 
