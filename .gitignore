@@ -13,6 +13,7 @@ snakemake.log
 
 !raw_data/.gitkeep
 !samplesheets/.gitkeep
+!samplesheets/samplesheet_template.tsv
 !logs/.gitkeep
 !logs/cluster/.gitkeep
 
