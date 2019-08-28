@@ -1,0 +1,8 @@
+name: snakemake_minimal
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - snakemake=5.5.4=2
+    - git=2.23.0=pl526hce37bd2_0
+

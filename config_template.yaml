@@ -1,0 +1,13 @@
+---
+
+experiments:
+    "2018_11_07":
+        samplesheet: samplesheets/2018_11_07_diamide_fitness_competition_samplesheet.tsv
+        sampling_fraction: 0.1
+        yfp_cutoff: 500
+        mcherry_cutoff: 250
+    "2018_10_16":
+        samplesheet: samplesheets/2018_10_16_diamide_fitness_competition_samplesheet.tsv
+        sampling_fraction: 0.01
+        yfp_cutoff: 500
+        mcherry_cutoff: 250
